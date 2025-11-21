@@ -9,7 +9,7 @@ import SMIClientCore
 struct AppConfiguration {
     static let serviceAPI = URL(string: "https://bnh--miaw.sandbox.my.salesforce-scrt.com")!
     static let organizationId = "00DD30000001Vmq"
-    static let developerName = "MIAW"
+    static let developerName = "MIAW_IOS"
 }
 
 struct ContentView: View {

@@ -14,9 +14,6 @@
 		27B2C73B2A30E77300DC6740 /* MessagingUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C7392A30E77300DC6740 /* MessagingUIExampleApp.swift */; };
 		27B2C73C2A30E77300DC6740 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B2C73A2A30E77300DC6740 /* ContentView.swift */; };
 		27B2C74A2A30E7DC00DC6740 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27B2C7492A30E7DC00DC6740 /* Localizable.strings */; };
-		F2665FE52CB819820044B7BF /* ConnectionEnvironment+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2665FE42CB819820044B7BF /* ConnectionEnvironment+Example.swift */; };
-		F27FB55C2CB45B2500E243B4 /* UIKitMIAW.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FB55B2CB45B2500E243B4 /* UIKitMIAW.swift */; };
-		F2BFC19E2CAEDE1E000B97C0 /* SettingsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BFC1782CAEDE1E000B97C0 /* SettingsForm.swift */; };
 		F2DE42862E09915300C07239 /* MobileSync in Frameworks */ = {isa = PBXBuildFile; productRef = F2DE42852E09915300C07239 /* MobileSync */; };
 		F2DE42882E09915300C07239 /* SalesforceAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F2DE42872E09915300C07239 /* SalesforceAnalytics */; };
 		F2DE428A2E09915300C07239 /* SalesforceSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = F2DE42892E09915300C07239 /* SalesforceSDKCommon */; };
@@ -32,9 +29,6 @@
 		27B2C7392A30E77300DC6740 /* MessagingUIExampleApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingUIExampleApp.swift; sourceTree = "<group>"; };
 		27B2C73A2A30E77300DC6740 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		27B2C7492A30E7DC00DC6740 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		F2665FE42CB819820044B7BF /* ConnectionEnvironment+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectionEnvironment+Example.swift"; sourceTree = "<group>"; };
-		F27FB55B2CB45B2500E243B4 /* UIKitMIAW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMIAW.swift; sourceTree = "<group>"; };
-		F2BFC1782CAEDE1E000B97C0 /* SettingsForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -83,10 +77,7 @@
 		27B2C7382A30E77300DC6740 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F2BFC1782CAEDE1E000B97C0 /* SettingsForm.swift */,
 				27B2C73A2A30E77300DC6740 /* ContentView.swift */,
-				F27FB55B2CB45B2500E243B4 /* UIKitMIAW.swift */,
-				F2665FE42CB819820044B7BF /* ConnectionEnvironment+Example.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,10 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2665FE52CB819820044B7BF /* ConnectionEnvironment+Example.swift in Sources */,
 				27B2C73C2A30E77300DC6740 /* ContentView.swift in Sources */,
-				F2BFC19E2CAEDE1E000B97C0 /* SettingsForm.swift in Sources */,
-				F27FB55C2CB45B2500E243B4 /* UIKitMIAW.swift in Sources */,
 				27B2C73B2A30E77300DC6740 /* MessagingUIExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

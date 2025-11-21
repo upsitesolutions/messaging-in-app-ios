@@ -10,18 +10,44 @@ import Foundation
 import SMIClientCore
 import SalesforceSDKCore
 
+class NavBarReplacementStore {
+    var dynamicTitleReplacement = true
+}
+
+class DelegateManagementStore {
+    var templatedURLValues: [String: String] = [:]
+    var hiddenPreChatValues: [String: String] = [:]
+}
+
+enum AuthorizationMethod {
+    case userVerified
+    case passthrough
+}
+
+class ConfigStore {
+    var authorizationMethod: AuthorizationMethod = .userVerified
+}
+
+class UserVerificationStore {
+    var tokenJWT: String = ""
+}
+
+class AuthHelper {
+    static func loginIfRequired(completion: @escaping () -> Void) {
+        completion()
+    }
+}
+
 @objc class GlobalCoreDelegateHandler: NSObject {
     static let shared = GlobalCoreDelegateHandler()
 
     let viewBuilder: TestEntryViewBuilder = TestEntryViewBuilder()
     let navBarBuilder: TestNavBarBuilder = TestNavBarBuilder()
     let prePopulatedPreChatProvider: TestPrePopulatedPreChatProvider = TestPrePopulatedPreChatProvider()
-    let userVerificationStore: UserVerificationStore = UserVerificationStore()
-    let passthroughVerificationStore: PassthroughVerificationStore = PassthroughVerificationStore()
-    let uiReplacementStore: UIReplacementStore = UIReplacementStore()
-    let navBarReplacementStore: NavBarReplacementStore = NavBarReplacementStore()
-    let delegateManagementStore: DelegateManagementStore = DelegateManagementStore()
-    let configStore: MIAWConfigurationStore = MIAWConfigurationStore()
+    let navBarReplacementStore = NavBarReplacementStore()
+    let delegateManagementStore = DelegateManagementStore()
+    let configStore = ConfigStore()
+    let userVerificationStore = UserVerificationStore()
     var client: ConversationClient?
 
     func registerDelegates(_ core: CoreClient?) {

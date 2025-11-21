@@ -11,20 +11,17 @@ import SMIClientCore
 import SMIClientUI
 
 struct TestEntryViewBuilder: ChatFeedViewBuilder {
-    private let uiReplacementStore: UIReplacementStore = UIReplacementStore()
 
     var renderMode: RenderModeClosure? {
         return { model in
-            if uiReplacementStore.replaceAll { return .replace }
-
-            let category = UIReplacementCategory.category(model).rawValue
-            return ChatFeedRenderMode(rawValue: uiReplacementStore.uiReplacements[category]?.renderMode ?? "") ?? .existing
+            return .existing
         }
     }
 
     var completeView: CompleteViewClosure? {
         return { model, client in
-            UIReplacementCategory.category(model).view(model, client: client)
+            // No custom view replacement
+            AnyView(EmptyView())
         }
     }
 }

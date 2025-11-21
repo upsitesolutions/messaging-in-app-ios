@@ -7,12 +7,21 @@ import SMIClientUI
 import SMIClientCore
 
 struct ContentView: View {
+    @State private var conversationIDString = UUID().uuidString
+
     var body: some View {
         WrappedNavigationStack {
             VStack {
+                TextField("Enter Conversation UUID", text: $conversationIDString)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                
                 NavigationLink("Start Chat") {
-                    MIAW()
+                    if let uuid = UUID(uuidString: conversationIDString) {
+                        MIAW(conversationID: uuid)
+                    }
                 }
+                .disabled(UUID(uuidString: conversationIDString) == nil)
                 // .buttonStyle(.borderedProminent)
             }
             .navigationTitle("Messaging")
@@ -25,7 +34,7 @@ struct MIAW: View {
     private let serviceAPI = URL(string: "https://bnh--miaw.sandbox.my.salesforce-scrt.com")!
     private let organizationId = "00DD30000001Vmq"
     private let developerName = "MIAW"
-    private let conversationID = UUID()
+    let conversationID: UUID
     
     var body: some View {
         let coreConfig = Configuration(serviceAPI: serviceAPI,
@@ -33,7 +42,7 @@ struct MIAW: View {
                                        developerName: developerName,
                                        userVerificationRequired: false)
         
-        var config = UIConfiguration(configuration: coreConfig,
+        let config = UIConfiguration(configuration: coreConfig,
                                      conversationId: conversationID)
         
         // Optional configurations

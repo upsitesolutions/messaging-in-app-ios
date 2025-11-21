@@ -6,6 +6,12 @@ import SwiftUI
 import SMIClientUI
 import SMIClientCore
 
+struct AppConfiguration {
+    static let serviceAPI = URL(string: "https://bnh--miaw.sandbox.my.salesforce-scrt.com")!
+    static let organizationId = "00DD30000001Vmq"
+    static let developerName = "MIAW"
+}
+
 struct ContentView: View {
     @State private var conversationIDString = UUID().uuidString
 
@@ -22,24 +28,43 @@ struct ContentView: View {
                     }
                 }
                 .disabled(UUID(uuidString: conversationIDString) == nil)
-                // .buttonStyle(.borderedProminent)
+                
+                Button("Clear Local Cache") {
+                    clearCache()
+                }
+                .padding(.top)
             }
             .navigationTitle("Messaging")
+        }
+    }
+    
+    private func clearCache() {
+        let coreConfig = Configuration(serviceAPI: AppConfiguration.serviceAPI,
+                                       organizationId: AppConfiguration.organizationId,
+                                       developerName: AppConfiguration.developerName,
+                                       userVerificationRequired: false)
+        
+        let client = CoreFactory.create(withConfig: coreConfig)
+        client.destroyStorage { error in
+            if let error = error {
+                print("Error destroying storage: \(error)")
+            } else {
+                print("Storage destroyed")
+                DispatchQueue.main.async {
+                    self.conversationIDString = UUID().uuidString
+                }
+            }
         }
     }
 }
 
 struct MIAW: View {
-    // Hardcoded Configuration - Replace with your actual values
-    private let serviceAPI = URL(string: "https://bnh--miaw.sandbox.my.salesforce-scrt.com")!
-    private let organizationId = "00DD30000001Vmq"
-    private let developerName = "MIAW"
     let conversationID: UUID
     
     var body: some View {
-        let coreConfig = Configuration(serviceAPI: serviceAPI,
-                                       organizationId: organizationId,
-                                       developerName: developerName,
+        let coreConfig = Configuration(serviceAPI: AppConfiguration.serviceAPI,
+                                       organizationId: AppConfiguration.organizationId,
+                                       developerName: AppConfiguration.developerName,
                                        userVerificationRequired: false)
         
         let config = UIConfiguration(configuration: coreConfig,

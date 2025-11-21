@@ -45,7 +45,7 @@ struct ContentView: View {
                                        userVerificationRequired: false)
         
         let client = CoreFactory.create(withConfig: coreConfig)
-        client.destroyStorage { error in
+        client.destroyStorage(andAuthorization: false) { error in
             if let error = error {
                 print("Error destroying storage: \(error)")
             } else {

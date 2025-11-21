@@ -10,10 +10,10 @@ struct ContentView: View {
     var body: some View {
         WrappedNavigationStack {
             VStack {
-                NavigationLink("SwiftUI") {
+                NavigationLink("Start Chat") {
                     MIAW()
                 }
-                .buttonStyle(.borderedProminent)
+                // .buttonStyle(.borderedProminent)
             }
             .navigationTitle("Messaging")
         }
@@ -22,9 +22,9 @@ struct ContentView: View {
 
 struct MIAW: View {
     // Hardcoded Configuration - Replace with your actual values
-    private let serviceAPI = URL(string: "https://your-service-api.com")!
-    private let organizationId = "your-org-id"
-    private let developerName = "your-dev-name"
+    private let serviceAPI = URL(string: "https://bnh--miaw.sandbox.my.salesforce-scrt.com")!
+    private let organizationId = "00DD30000001Vmq"
+    private let developerName = "MIAW"
     private let conversationID = UUID()
     
     var body: some View {

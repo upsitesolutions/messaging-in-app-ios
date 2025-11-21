@@ -12,17 +12,30 @@ import SalesforceSDKCore
 
 extension GlobalCoreDelegateHandler: UserVerificationDelegate {
     func core(_ core: CoreClient, userVerificationChallengeWith reason: ChallengeReason) async -> UserVerification? {
-        if reason == .expired || reason == .malformed { return nil }
+        print("🔐 User verification challenge received. Reason: \(reason)")
+        print("🔐 Authorization method: \(configStore.authorizationMethod)")
+
+        if reason == .expired || reason == .malformed {
+            print("⚠️ Returning nil due to expired/malformed token")
+            return nil
+        }
 
         switch configStore.authorizationMethod {
         case .userVerified:
+            print("🔐 Using JWT token (length: \(userVerificationStore.tokenJWT.count))")
+            if userVerificationStore.tokenJWT.isEmpty {
+                print("❌ WARNING: JWT token is empty!")
+            }
             return UserVerification(customerIdentityToken: userVerificationStore.tokenJWT, type: .JWT)
 
         case .passthrough:
+            print("🔐 Using Salesforce passthrough authentication")
             await Self.salesforceLogin()
             return await Self.fetchMIAWJWT(core)
 
-        default: return nil
+        default:
+            print("❌ No authorization method matched, returning nil")
+            return nil
         }
     }
 }

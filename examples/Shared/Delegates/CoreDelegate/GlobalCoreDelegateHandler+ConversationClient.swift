@@ -24,4 +24,9 @@ extension GlobalCoreDelegateHandler: ConversationClientDelegate {
             }
         }
     }
+
+    func client(_ client: any ConversationClient, didError error: Error) {
+        print("❌ ConversationClient Error: \(error)")
+        print("❌ Error details: \(error.localizedDescription)")
+    }
 }

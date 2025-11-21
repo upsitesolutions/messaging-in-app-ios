@@ -60,16 +60,16 @@ struct ContentView: View {
 
 struct MIAW: View {
     let conversationID: UUID
-    
+
     var body: some View {
         let coreConfig = Configuration(serviceAPI: AppConfiguration.serviceAPI,
                                        organizationId: AppConfiguration.organizationId,
                                        developerName: AppConfiguration.developerName,
                                        userVerificationRequired: false)
-        
+
         let config = UIConfiguration(configuration: coreConfig,
                                      conversationId: conversationID)
-        
+
         // Optional configurations
         // config.urlDisplayMode = .inlineBrowser
         config.conversationOptionsConfiguration = ConversationOptionsConfiguration(allowEndChat: true)
@@ -81,8 +81,16 @@ struct MIAW: View {
                          chatFeedViewBuilder: GlobalCoreDelegateHandler.shared.viewBuilder,
                          navigationBarBuilder: GlobalCoreDelegateHandler.shared.navBarBuilder)
         .onAppear(perform: {
+            print("🚀 Initializing conversation with ID: \(conversationID)")
+            print("🚀 Service API: \(AppConfiguration.serviceAPI)")
+            print("🚀 Organization ID: \(AppConfiguration.organizationId)")
+            print("🚀 Developer Name: \(AppConfiguration.developerName)")
+            print("🚀 User Verification Required: false")
+
             let client = CoreFactory.create(withConfig: config).conversationClient(with: conversationID)
             GlobalCoreDelegateHandler.shared.registerDelegates(client)
+
+            print("✅ Delegates registered")
         })
     }
 }
